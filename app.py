@@ -1,5 +1,4 @@
 from flask import Flask, request
-from googletrans import Translator
 import text2emotion as te
 app = Flask(__name__)
 
@@ -8,7 +7,7 @@ app = Flask(__name__)
 def hello():
     a = te.get_emotion("hello World how are hope you are fine")
     print(a)
-    return "a"
+    return a
 
 
 @app.route('/emotion', methods=['POST'])
@@ -33,17 +32,8 @@ def emotion():
     return emo
 
 
-@app.route('/translate', methods=['POST'])
-def translate():
-    body = request.json
-    l = " ".join(body)
 
-    translator = Translator()
-
-    print(translator.translate('안녕하세요.'))
-
-    return l
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run()
